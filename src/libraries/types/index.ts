@@ -105,6 +105,11 @@ export type HeaderProp = {
      * This could be a URL or an identifier for the icon.
      */
     rightIcon?: string;
+    /**
+     * Optional boolean representing the icon used.
+     * default false to show materialIcon, and true to show materialCommunityIcon
+     */
+    MIcon?: boolean;
 };
 
 export type SearchProp = {
@@ -123,6 +128,5 @@ export type ModalProps = {
     visible: boolean,
     onRequestClose: (e: any) => void
     source: string
-    close: (e: GestureResponderEvent) => void
     gender: string
 }

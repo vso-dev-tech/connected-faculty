@@ -5,6 +5,7 @@
     "paths": {
       "library/types": ["src/libraries/types"],
       "library/interface": ["src/libraries/interfaces"],
+      "redux-types": ["src/libraries/redux/context/store"],
     },
     "outDir": "./dist", // Optional: specifies the output directory for compiled files
     "strict": true, // Ensures strict type checking

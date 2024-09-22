@@ -1,41 +1,40 @@
-import { View, Text } from 'react-native'
-import React, { useEffect, useState } from 'react'
-import { Container, SafeAreaContainer, ScrollContainer } from '../../../libraries/components/views'
-import { TabHeaders } from '../../../libraries/components/headers'
-import EncryptedStorage from 'react-native-encrypted-storage'
-import { useDispatch } from 'react-redux'
-import { search } from '@libraries/redux/actions/reducers/searchReducers'
-import { useNavigation } from '@react-navigation/native'
-import { searchfunction } from '../../../libraries/redux/functions/global'
-import { AppDispatch } from '@libraries/redux/context/store'
-import StudentsList from './components/studentlist'
-import { ImageViewer } from '../../../libraries/components/modals'
+/* eslint-disable react-native/no-inline-styles */
 
-type Props = {}
+import React, { useEffect, useState } from 'react';
+import { Container, SafeAreaContainer, ScrollContainer } from '../../../libraries/components/views';
+import { TabHeaders } from '../../../libraries/components/headers';
+import EncryptedStorage from 'react-native-encrypted-storage';
+import { useDispatch } from 'react-redux';
+import { useNavigation } from '@react-navigation/native';
+import { searchfunction } from '../../../libraries/redux/functions/global';
+import StudentsList from './components/studentlist';
+import { ImageViewer } from '../../../libraries/components/modals';
+import { AppDispatch } from 'redux-types';
 
 interface ImageViewerState {
   photo: string,
   gender: string,
 }
 
-const Attendance = (props: Props) => {
+const Attendance = () => {
   const [token, settoken] = useState<string | null>('');
   const [imageviewer, setimageviewer] = useState<ImageViewerState>({ photo: '', gender: '' });
-  const [openimage, setopenimage] = useState<boolean>(false)
+  const [openimage, setopenimage] = useState<boolean>(false);
   const dispatch = useDispatch<AppDispatch>();
   const navigation = useNavigation();
 
   useEffect(() => {
     const getEncrypted = async () => {
-      const item = await EncryptedStorage.getItem('auth_token') || null
-      settoken(item)
+      const item = await EncryptedStorage.getItem('auth_token') || null;
+      settoken(item);
 
-    }
-    getEncrypted()
-  }, [])
+    };
+    getEncrypted();
+    console.log(token); //kahit sa useEffect na yung function, or pwede din hiwalay
+  }, [token]);
 
   const classdata =
-    { classname: 'A-2024', classId: 2, date: '24 Aug 2024' }
+    { classname: 'A-2024', classId: 2, date: '24 Aug 2024' };
 
 
   const data = [
@@ -222,12 +221,12 @@ const Attendance = (props: Props) => {
   ];
 
   function handleViewImage(photo: string, imageOpen: boolean, gender: string) {
-    console.log(photo)
-    if (photo == '') {
-      return
+    console.log(photo);
+    if (photo === '') {
+      return;
     } else {
       setimageviewer({ photo: photo, gender: gender });
-      setopenimage(imageOpen)
+      setopenimage(imageOpen);
     }
   }
 
@@ -237,19 +236,31 @@ const Attendance = (props: Props) => {
 
       <ScrollContainer>
         <TabHeaders
-          name='Attendance'
+          name="Attendance"
           rightIconActive
-          rightIcon='manage-search'
-          rightIconPress={() => { dispatch(searchfunction('Student', (route: string) => navigation.navigate(route as never))) }}
+          rightIcon="manage-search"
+          rightIconPress={() => {
+            dispatch(
+              searchfunction('Student',
+                (route: string) =>
+                  navigation.navigate(route as never)
+              )
+            );
+          }}
         />
         <Container style={{ marginTop: 50 }}>
           <StudentsList openImage={(e, b, c) => handleViewImage(e, b, c)} class={classdata} data={data} />
         </Container>
       </ScrollContainer>
-      <ImageViewer source={imageviewer.photo} gender={imageviewer.gender} visible={openimage} onRequestClose={() => setopenimage(false)} close={() => setopenimage(false)} />
+      <ImageViewer
+        source={imageviewer.photo}
+        gender={imageviewer.gender}
+        visible={openimage}
+        onRequestClose={() => { setopenimage(false); }}
+      />
     </SafeAreaContainer>
 
-  )
-}
+  );
+};
 
 export default Attendance;
