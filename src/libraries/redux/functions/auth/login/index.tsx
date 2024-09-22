@@ -1,12 +1,11 @@
 // loginActions.ts
 import { Dispatch } from 'redux';
 import EncryptedStorage from 'react-native-encrypted-storage';
-import { loginSuccess, loginFailure } from '../../actions/reducers/authReducers';
+import { loginSuccess, loginFailure } from '../../../actions/reducers/authReducers';
 
-export const login = (email: string, password: string, navigate: (route: string) => void) => async (dispatch: Dispatch) => {
+const login = (email: string, password: string, navigate: (route: string) => void) => async (dispatch: Dispatch) => {
   try {
-    console.log('yow')
-    // Simulating API response
+    console.log('yow');
     // const response = await fetch('https://your-api-url.com/login', {
     //   method: 'POST',
     //   headers: {
@@ -29,3 +28,5 @@ export const login = (email: string, password: string, navigate: (route: string)
     dispatch(loginFailure(error.message));
   }
 };
+
+export default login;

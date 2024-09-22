@@ -1,5 +1,6 @@
-import { View, Text, SafeAreaView } from 'react-native'
-import React from 'react'
+/* eslint-disable react-native/no-inline-styles */
+import { View, SafeAreaView } from 'react-native';
+import React from 'react';
 import { SafeAreaProps, ScrollProps, ContainerProps } from '../../types';
 import { ScrollView } from 'react-native-gesture-handler';
 
@@ -9,8 +10,8 @@ export const Container = (props: ContainerProps) => {
     <View style = {[{width: '100%', height: '100%', justifyContent: 'center', alignItems: 'center', paddingTop: 50}, style]}>
       {children}
     </View>
-  )
-}
+  );
+};
 
 export const ScrollContainer = (props: ScrollProps) => {
     const {children} = props;
@@ -18,8 +19,8 @@ export const ScrollContainer = (props: ScrollProps) => {
       <ScrollView style = {{width: '100%', height: '100%'}}>
         {children}
       </ScrollView>
-    )
-}
+    );
+};
 
 export const SafeAreaContainer = (props: SafeAreaProps) => {
     const {children} = props;
@@ -28,5 +29,5 @@ export const SafeAreaContainer = (props: SafeAreaProps) => {
         <SafeAreaView style = {{flex: 1,  backgroundColor: '#fff', justifyContent: 'center', alignItems: 'center', alignContent: 'center'}}>
             {children}
         </SafeAreaView>
-    )
-}
+    );
+};
