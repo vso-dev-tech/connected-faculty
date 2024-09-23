@@ -15,7 +15,7 @@ const App = () => {
       <StatusBar barStyle={'dark-content'} backgroundColor={white.main}/>
       </Provider>
    </NavigationContainer>
-  )
-}
+  );
+};
 
 export default App;

@@ -1,25 +1,28 @@
-import { View, Text, TextStyle } from 'react-native'
-import React from 'react'
+/* eslint-disable react/no-unstable-nested-components */
+import React from 'react';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import Icon from 'react-native-vector-icons/MaterialIcons'
+import Icon from 'react-native-vector-icons/MaterialIcons';
 import { theme } from '../../assets/colors';
 import Attendance from '../../screens/home/attendance';
 import Reports from '../../screens/home/reports';
 import Bulletin from '../../screens/home/bulletin';
 import Menu from '../../screens/home/menu';
 import Events from '../../screens/home/calendar';
+import { useExitApp } from '../../libraries/redux/functions/global';
 type RootTabParamList = {
     Attendance: undefined;
 		Reports: undefined;
 		Events: undefined;
 		Bulletin: undefined;
 		Menu: undefined;
-		
 };
 
 const Tab = createBottomTabNavigator<RootTabParamList>();
 
 const Tabs: React.FC = () => {
+
+	useExitApp();
+
   return (
     <Tab.Navigator
         screenOptions={() => ({
@@ -42,7 +45,7 @@ const Tabs: React.FC = () => {
 								size = {focused ? 30 : 25}
 							/>
 						</>
-          )
+          ),
 				}}
 			/>
 			<Tab.Screen
@@ -59,7 +62,7 @@ const Tabs: React.FC = () => {
 								size = {focused ? 30 : 25}
 							/>
 						</>
-          )
+          ),
 				}}
 			/>
 			<Tab.Screen
@@ -76,7 +79,7 @@ const Tabs: React.FC = () => {
 								size = {focused ? 30 : 25}
 							/>
 						</>
-          )
+          ),
 				}}
 			/>
 			<Tab.Screen
@@ -93,7 +96,7 @@ const Tabs: React.FC = () => {
 								size = {focused ? 30 : 25}
 							/>
 						</>
-          )
+          ),
 				}}
 			/>
 			<Tab.Screen
@@ -110,11 +113,11 @@ const Tabs: React.FC = () => {
 								size = {focused ? 30 : 25}
 							/>
 						</>
-          )
+          ),
 				}}
 			/>
     </Tab.Navigator>
-  )
-}
+  );
+};
 
-export default Tabs
+export default Tabs;
