@@ -1,6 +1,3 @@
-import React from "react";
-import { useColorScheme } from "react-native";
-
 interface PaletteOptions {
 
     theme: {
@@ -10,7 +7,7 @@ interface PaletteOptions {
         accentb: string,
         accentc: string,
         accentd: string,
-        
+
     }
 
     black: {
@@ -54,7 +51,7 @@ interface PaletteOptions {
         G006: string,
         G007: string,
         G008: string,
-        
+
     },
     transparent: {
         level01: string,
@@ -65,16 +62,7 @@ interface PaletteOptions {
 
     }
 
-};
-
-const darkmode = () =>{
-
-
-    const mode = useColorScheme() === 'dark';
-
-    return { mode }
-
-};
+}
 
 
 
@@ -96,7 +84,7 @@ const colors: PaletteOptions = {
         B003: '#303030',
         B004: '#404040',
         B005: '#919191',
-        B006: '#d2d2d2'
+        B006: '#d2d2d2',
 
     },
     white: {
@@ -105,7 +93,7 @@ const colors: PaletteOptions = {
         W001: '#F6F6F6',
         W002: '#F0F0F0',
         W003: '#E2E2E2',
-        W004: '#f0f1f5'
+        W004: '#f0f1f5',
 
     },
     errors: {
@@ -131,8 +119,6 @@ const colors: PaletteOptions = {
         G006: '#99EDC3',
         G007: '#4ab515',
         G008: '#F6F9E3',
-        
-
     },
     transparent: {
 
@@ -143,18 +129,14 @@ const colors: PaletteOptions = {
         level05: '#00000099',
 
 
-    }
+    },
 
-}
-
-const colorway = darkmode();
+};
 
 // main colors
-export const white = colors.white
-export const black = colors.black
-export const errors = colors.errors
-export const success = colors.success
-export const theme = colors.theme
-export const transparent = colors.transparent
-// color mode
-export const mode = colorway.mode
+export const white = colors.white;
+export const black = colors.black;
+export const errors = colors.errors;
+export const success = colors.success;
+export const theme = colors.theme;
+export const transparent = colors.transparent;

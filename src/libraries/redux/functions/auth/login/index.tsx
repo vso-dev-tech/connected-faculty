@@ -1,7 +1,7 @@
 import {Dispatch} from 'redux';
 import EncryptedStorage from 'react-native-encrypted-storage';
-import {loginSuccess, loginFailure} from '../../actions/reducers/authReducers';
-import {AuthResponse} from '@libraries/interfaces';
+import {loginSuccess, loginFailure} from '../../../actions/reducers/authReducers';
+import { AuthResponse } from 'library/interface';
 
 export const login =
   (email: string, password: string, navigate: (route: string) => void) =>
