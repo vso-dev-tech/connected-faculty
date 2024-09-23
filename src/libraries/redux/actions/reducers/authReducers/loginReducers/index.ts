@@ -1,6 +1,6 @@
 // authReducer.ts
-import { AuthState } from '@libraries/interfaces';
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { AuthState } from 'library/interface';
 
 
 const initialState: AuthState = {

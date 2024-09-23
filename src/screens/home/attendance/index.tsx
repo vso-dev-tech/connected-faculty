@@ -30,7 +30,7 @@ const Attendance = () => {
 
     };
     getEncrypted();
-    console.log(token); //kahit sa useEffect na yung function, or pwede din hiwalay
+    console.log(token); //kahit sa useEffect o useFocusEffect na yung function, or pwede din hiwalay
   }, [token]);
 
   const classdata =

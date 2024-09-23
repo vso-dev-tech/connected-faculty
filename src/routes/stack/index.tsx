@@ -1,26 +1,39 @@
 import { CardStyleInterpolators, createStackNavigator } from '@react-navigation/stack';
 import React from 'react';
-import Login from '../../screens/auth/login';
 import Tabs from '../../routes/tabs';
 import Search from '../../screens/global/search';
 import Logout from '../../screens/auth/logout';
+import { RootStackParamList } from 'global/types';
+import Login from '../../screens/auth/login';
+import Splash from '../../screens/partials/splash';
+import SavedLoginScreen from '../../screens/auth/saved';
 
-type RootStackParamList = {
-	Login: undefined;
-	Tabs: undefined;
-	Search: undefined;
-	Logout: undefined;
-};
 
 const Stack = createStackNavigator<RootStackParamList>();
 
 const Stacks: React.FC = () => {
 
 	return (
-		<Stack.Navigator initialRouteName="Login">
+		<Stack.Navigator initialRouteName="Splash">
+			<Stack.Screen
+				name="Splash"
+				component={Splash}
+				options={{
+					headerShown: false,
+					cardStyleInterpolator: CardStyleInterpolators.forFadeFromBottomAndroid,
+				}}
+			/>
 			<Stack.Screen
 				name="Login"
 				component={Login}
+				options={{
+					headerShown: false,
+					cardStyleInterpolator: CardStyleInterpolators.forFadeFromBottomAndroid,
+				}}
+			/>
+			<Stack.Screen
+				name="SaveLogin"
+				component={SavedLoginScreen}
 				options={{
 					headerShown: false,
 					cardStyleInterpolator: CardStyleInterpolators.forFadeFromBottomAndroid,
