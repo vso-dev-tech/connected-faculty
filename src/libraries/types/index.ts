@@ -1,23 +1,22 @@
 /**
  * @fileoverview
- * This file contains all types used within the library. 
+ * This file contains all types used within the library.
  * If you encounter any props that are not defined here, consider adding them to this section.
- * 
+ *
  * © vsodev.tech. All rights reserved.
- * 
+ *
  * Note:
  * If you find any anomalies in the props, please investigate their usage and inform the team before making any changes.
- * 
+ *
  * If a ticket requires modifications related to this file, please include the ticket number below:
- * 
+ *
  * Ticket Number: [Insert Ticket Number Here]
- * 
+ *
  * For any further queries or issues, please contact the team.
  */
 
-import { StudentData } from "@libraries/interfaces";
-import { NavigationProp } from "@react-navigation/native";
-import { ViewStyle } from "react-native";
+import { StudentData } from 'library/interface';
+import { ViewStyle } from 'react-native';
 import { GestureResponderEvent } from 'react-native';
 
 /**
@@ -106,6 +105,11 @@ export type HeaderProp = {
      * This could be a URL or an identifier for the icon.
      */
     rightIcon?: string;
+    /**
+     * Optional boolean representing the icon used.
+     * default false to show materialIcon, and true to show materialCommunityIcon
+     */
+    MIcon?: boolean;
 };
 
 export type SearchProp = {
@@ -124,6 +128,5 @@ export type ModalProps = {
     visible: boolean,
     onRequestClose: (e: any) => void
     source: string
-    close: (e: GestureResponderEvent) => void
     gender: string
 }

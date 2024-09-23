@@ -1,7 +1,8 @@
 import { View, Text, FlatList, Pressable } from 'react-native';
 import React from 'react';
-import AttendanceCard from '../../../../libraries/components/cards/attendancecard';
-import { AttendanceProps } from 'screens/types';
+import AttendanceCard from './attendancecard';
+import { AttendanceProps } from '../../../types';
+import { StyleSheet } from 'react-native';
 
 const StudentsList = (props: AttendanceProps) => {
 	const { classname, date } = props.class;
@@ -9,29 +10,52 @@ const StudentsList = (props: AttendanceProps) => {
 		<FlatList
 			data={props.data}
 			scrollEnabled={false}
-			style={{ width: '100%', height: '100%' }}
-			renderItem={({ item }) => <AttendanceCard openImage={(e, b, c) => props.openImage(e, b, c)} onPress={() => {console.log('pressed')}} data={item} />}
+			style={styles.flatlist}
+			renderItem={({ item }) =>
+				(
+					<AttendanceCard
+						openImage={(e, b, c) => props.openImage(e, b, c)}
+						onPress={() => { console.log('pressed'); }}
+						data={item} />
+				)
+			}
 			ListHeaderComponent={
-				<View style={{ justifyContent: 'center', alignItems: 'center' }}>
+				<View style={styles.header}>
 					<View
-						style={{
-							justifyContent: 'space-between',
-							alignItems: 'center',
-							flexDirection: 'row',
-							width: '95%',
-						}}>
-							<Pressable>
-								<Text>{classname}</Text>
-							</Pressable>
-							<Pressable>
-								<Text>{date}</Text>
-							</Pressable>
+						style={styles.headercontent}>
+						<Pressable>
+							<Text>{classname}</Text>
+						</Pressable>
+						<Pressable>
+							<Text>{date}</Text>
+						</Pressable>
 					</View>
 				</View>
 			}
-			ListFooterComponent={<View style={{ height: 50 }} />}
+			ListFooterComponent={<View style={styles.footer} />}
 		/>
 	);
 };
+
+const styles = StyleSheet.create({
+	flatlist: {
+		width: '100%',
+		height: '100%',
+	},
+	header: {
+		justifyContent: 'center',
+		alignItems: 'center',
+	},
+	headercontent: {
+		justifyContent: 'space-between',
+		alignItems: 'center',
+		flexDirection: 'row',
+		width: '95%',
+	},
+	footer: {
+		height: 50,
+	},
+});
+
 
 export default StudentsList;
