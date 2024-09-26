@@ -1,5 +1,5 @@
 import { configureStore } from '@reduxjs/toolkit';
-import authReducer from '../actions/reducers/authReducers';
+import authReducer from '../actions/reducers/authReducers/loginReducers';
 import searchReducers from '../actions/reducers/searchReducers';
 
 export type RootState = ReturnType<typeof store.getState>;

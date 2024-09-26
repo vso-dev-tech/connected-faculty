@@ -130,3 +130,9 @@ export type ModalProps = {
     source: string
     gender: string
 }
+
+export type UserCardProp = {
+    name: string,
+    image: string,
+    onPress: (e: any) => void
+}

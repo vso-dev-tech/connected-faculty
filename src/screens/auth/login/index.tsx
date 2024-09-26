@@ -3,31 +3,33 @@ import React, { useState } from 'react';
 import { Image, StyleSheet, Text } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState, AppDispatch } from '../../../libraries/redux/context/store';
-import { login } from '../../../libraries/redux/functions/auth';
-import { useNavigation } from '@react-navigation/native';
+import { NavigationProp, useNavigation } from '@react-navigation/native';
 import { Container, SafeAreaContainer, ScrollContainer } from '../../../libraries/components/views';
 import { LoginField } from '../../../libraries/components/textfields';
 import { ButtonL, CheckBoxButton, TextButton } from '../../../libraries/components/buttons';
 import { black } from '../../../assets/colors';
 import DeviceInfo from 'react-native-device-info';
 import { useExitApp } from '../../../libraries/redux/functions/global';
+import { login } from '../../../libraries/redux/functions/auth';
+import { RootStackParamList } from 'global/types';
 
-const LoginScreen: React.FC = () => {
+const Login: React.FC = () => {
   const [email, setEmail] = useState<string>('');
   const [password, setPassword] = useState<string>('');
   const [checked, setchecked] = useState<boolean>(false);
+
+  const version = DeviceInfo.getVersion();
+  useExitApp();
   const dispatch = useDispatch<AppDispatch>();
-  const navigation = useNavigation();
+  const navigation = useNavigation<NavigationProp<RootStackParamList>>();
   const auth: any = useSelector((state: RootState) => state.auth);
 
   const handleLogin = () => {
-    dispatch(login(email, password, (route: string) => {
+    dispatch(login(email, password, checked, (route: string) => {
       navigation.navigate(route as never);
     }));
   };
 
-  const version = DeviceInfo.getVersion();
-  useExitApp();
   return (
     <SafeAreaContainer>
       <ScrollContainer>
@@ -96,4 +98,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default LoginScreen;
+export default Login;
