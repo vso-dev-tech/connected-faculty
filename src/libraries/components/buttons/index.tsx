@@ -1,4 +1,4 @@
-import {Text, StyleSheet, TouchableOpacity, View } from 'react-native';
+import {Text, StyleSheet, TouchableOpacity, View, StyleProp, ViewStyle } from 'react-native';
 import React from 'react';
 import { black, theme, white } from '../../../assets/colors';
 import CheckBox from '@react-native-community/checkbox';
@@ -6,6 +6,7 @@ import CheckBox from '@react-native-community/checkbox';
 type Props = {
   onPress: (e: any) => void
   name: string
+  style?: StyleProp<ViewStyle>
 }
 
 type TextButton = {
@@ -22,11 +23,12 @@ type CheckBoxButton = {
 export const ButtonL: React.FC<Props> = ({
   onPress,
   name,
+  style,
 }) => {
   return (
     <TouchableOpacity
       onPress={onPress}
-      style = {styles.buttonLcontainer}>
+      style = {[styles.buttonLcontainer, style]}>
       <Text
         style ={styles.name}
       >{name}</Text>

@@ -6,6 +6,9 @@
       "library/types": ["src/libraries/types"],
       "library/interface": ["src/libraries/interfaces"],
       "redux-types": ["src/libraries/redux/context/store"],
+      "redux-reducers": ["src/libraries/redux/actions/reducers"],
+      "global/types": ["src/types"],
+      "global/interfaces": ["src/interface"],
     },
     "outDir": "./dist", // Optional: specifies the output directory for compiled files
     "strict": true, // Ensures strict type checking

@@ -1,4 +1,3 @@
-import { NavigationProp } from "@react-navigation/native";
 
 /**
  * @fileoverview
@@ -67,14 +66,55 @@ export interface AuthResponse {
      * The authentication token received upon successful authentication.
      */
     token: string;
+    /**
+     * This is a default image while it has not loaded yet, maybe?
+     */
+    image: string;
+    /**
+     * if saved data, this will be used when relogging in
+     */
+    name: string,
 }
 
-  export interface StudentData {
-    name: string;
-    attendance: string;
-    remarks: string;
-    attendanceId: string;
-    studentId: string;
-    photo: string;
-    gender: string;
-  }
+/**
+ * Represents the Login params
+ */
+export interface LoginProps {
+    /**
+     * A message related to the authentication response.
+     */
+    email: string;
+
+    /**
+     * A boolean indicating the success of the authentication request.
+     */
+    password: boolean;
+
+    /**
+     * The authentication token received upon successful authentication.
+     */
+    navigate: (e: string) => void;
+}
+
+export interface saveLoginState {
+    /**
+     * The authentication token, or null if not authenticated.
+     */
+    image: string | null;
+
+    /**
+     * Any error message related to authentication, or null if there is no error.
+     */
+    email: string | null;
+    password: string | null;
+}
+
+export interface StudentData {
+name: string;
+attendance: string;
+remarks: string;
+attendanceId: string;
+studentId: string;
+photo: string;
+gender: string;
+}

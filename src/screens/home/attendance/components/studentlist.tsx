@@ -1,7 +1,7 @@
 import { View, Text, FlatList, Pressable } from 'react-native';
 import React from 'react';
 import AttendanceCard from './attendancecard';
-import { AttendanceProps } from '../../../types';
+import { AttendanceProps } from '../../../../types';
 import { StyleSheet } from 'react-native';
 
 const StudentsList = (props: AttendanceProps) => {

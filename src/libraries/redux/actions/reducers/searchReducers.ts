@@ -1,6 +1,7 @@
 // authReducer.ts
-import { SearchState } from '@libraries/interfaces';
+
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { SearchState } from 'library/interface';
 
 
 const initialState: SearchState = {
@@ -14,7 +15,6 @@ const searchSlice = createSlice({
     search(state, action: PayloadAction<string>) {
       state.type = action.payload;
     },
-    
   },
 });
 
