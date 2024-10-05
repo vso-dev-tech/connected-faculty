@@ -11,6 +11,9 @@ import { Alert, Platform, ToastAndroid } from 'react-native';
  * @property {string} email credentails to obtain token
  * @property {string} password credential to obtain token combined with the email
  * @property {function} navigate where the logged in screen should navigate
+ * @returns {function} A function that handles the dispatch process of the login action.
+ *
+ * @throws Will dispatch a login failure action and show an error message if the login process fails.
  *
  */
 
@@ -22,22 +25,19 @@ const login = (email: string, password: string, checked: boolean, navigate: (rou
       Alert.alert('', `seems like you forgot to put your ${email === '' ? 'email' : 'password'}`);
       return;
     }
-    // Making the API call
-    //Change the API address when using it in local
-    // const response = await fetch('http://10.0.2.2:3000/login', {
-    //   method: 'POST',
-    //   headers: {
-    //     'Content-Type': 'application/json',
-    //   },
-    //   body: JSON.stringify({email, password}),
-    // });
-
-    // Await the JSON response from the server
-    // const data: AuthResponse = await response.json();
-    const response = { ok: true };
-    const data: AuthResponse = { token: '123123', message: '1234', ok: true, name: 'Juan Dela Cruz', image: 'https://i.redd.it/i-got-bored-so-i-decided-to-draw-a-random-image-on-the-v0-4ig97vv85vjb1.png?width=1280&format=png&auto=webp&s=7177756d1f393b6e093596d06e1ba539f723264b' };
+    const response = await fetch('http://192.168.0.102:3000/auth/login', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({email, password}),
+    });
+    const data: AuthResponse = await response.json();
     console.log('Response data:', data);
-
+    if(data.error){
+      Alert.alert('', data.message);
+      return;
+    }
     if (response.ok) {
       if (checked) {
         const saved = await saveCredentials(email, password, data.image, data.name);
@@ -46,13 +46,12 @@ const login = (email: string, password: string, checked: boolean, navigate: (rou
             Alert.alert('Saved Credentials', 'We successfully have stored your credentials on your device.')
             :
             ToastAndroid.show('Successfully stored credentials', ToastAndroid.BOTTOM)
-          :
-          Platform.OS === 'ios' ?
+            :
+            Platform.OS === 'ios' ?
             Alert.alert('', 'Error storing your credentials, contact admin for more info.')
             :
             ToastAndroid.show('Error storing credentials', ToastAndroid.BOTTOM);
       }
-      // Store the token in encrypted storage and dispatch success action
       await EncryptedStorage.setItem('auth_token', data.token);
       dispatch(loginSuccess(data.token));
       navigate('Tabs');
