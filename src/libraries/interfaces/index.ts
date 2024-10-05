@@ -74,6 +74,10 @@ export interface AuthResponse {
      * if saved data, this will be used when relogging in
      */
     name: string,
+    /**
+     * handles error from API
+     */
+    error: string
 }
 
 /**
